@@ -1,0 +1,52 @@
+{
+  "name": "uls-contracts",
+  "version": "1.0.0",
+  "description": "ULS Smart Contracts",
+  "private": true,
+  "author": {
+    "name": "UNITS LIMITED SUPPLY",
+    "email": "hi@uls.cash",
+    "url": "https://uls.cash"
+  },
+  "scripts": {
+    "clean": "rimraf ./build/ && mkdirp ./build/ && rimraf ./flatten/ && mkdirp ./flatten/",
+    "precompile": "yarn clean",
+    "compile": "truffle compile",
+    "postcompile": "yarn run flatten",
+    "predeploy-": "yarn run compile",
+    "deploy": "truffle migrate --network",
+    "verify": "truffle run verify --network",
+    "test": "truffle test",
+    "flatten": "waffle flatten"
+  },
+  "homepage": "https://github.com/uls-cash/uls-contracts#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uls-cash/uls-contracts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uls-cash/uls-contracts/issues",
+    "email": "hi@uls.cash"
+  },
+  "files": [
+    "contracts",
+    "build"
+  ],
+  "dependencies": {
+    "@openzeppelin/contracts": "4.9.2",
+    "@openzeppelin/contracts-upgradeable": "4.9.2"
+  },
+  "devDependencies": {
+    "@openzeppelin/truffle-upgrades": "1.19.0",
+    "@truffle/hdwallet-provider": "2.1.12",
+    "bignumber.js": "^9.1.2",
+    "csv-stringify": "^6.4.4",
+    "dotenv": "16.3.1",
+    "ethereum-waffle": "4.0.10",
+    "ethers": "^6.7.1",
+    "mkdirp": "3.0.1",
+    "rimraf": "5.0.1",
+    "truffle": "5.10.1",
+    "truffle-plugin-verify": "0.6.4"
+  }
+}
