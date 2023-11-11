@@ -2,5 +2,5 @@
 /build/
 /flatten/
 .env
-*.log
-*.csv
+#*.log
+#*.csv
