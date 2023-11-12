@@ -168,6 +168,19 @@ contract UlsTokenStaking is Context, ITokenStaking {
         token.safeTransfer(to, amount);
     }
 
+    function restake() external {
+        Staker storage staker = _updateStateAndStaker(_msgSender());
+        assert(staker.reward >= staker.claimedReward);
+
+        uint128 unclaimedReward = staker.reward - uint128(staker.claimedReward);
+        emit Rewarded(_msgSender(), _msgSender(), unclaimedReward);
+        staker.claimedReward += unclaimedReward;
+
+        emit Staked(_msgSender(), unclaimedReward);
+        state.totalStaked += unclaimedReward;
+        staker.amount += unclaimedReward;
+    }
+
     /**
      * @dev Updates state and returns unclaimed reward amount.
      * Is supposed to be invoked as call from metamask
