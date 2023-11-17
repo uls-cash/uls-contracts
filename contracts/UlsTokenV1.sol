@@ -8,7 +8,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20Burnable
 import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/draft-ERC20PermitUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20VotesUpgradeable.sol";
 
-contract UlsToken is
+contract UlsTokenV1 is
     Initializable,
     ERC20Upgradeable,
     ERC20BurnableUpgradeable,
@@ -16,7 +16,7 @@ contract UlsToken is
     ERC20PermitUpgradeable,
     ERC20VotesUpgradeable
 {
-    function initialize() public initializer {
+    function initialize() public virtual initializer {
         __ERC20_init("UNITS LIMITED SUPPLY", "ULS");
         __ERC20Burnable_init();
         __ERC20Capped_init(10_000_000 * 10 ** decimals());
@@ -26,7 +26,7 @@ contract UlsToken is
         _mint(msg.sender, 10_000_000 * 10 ** decimals());
     }
 
-    function version() external view returns (uint8) {
+    function version() external view virtual returns (uint8) {
         return _getInitializedVersion();
     }
 
@@ -34,7 +34,7 @@ contract UlsToken is
         address from,
         address to,
         uint256 amount
-    ) internal override(ERC20Upgradeable, ERC20VotesUpgradeable) {
+    ) internal virtual override(ERC20Upgradeable, ERC20VotesUpgradeable) {
         super._afterTokenTransfer(from, to, amount);
     }
 
@@ -43,6 +43,7 @@ contract UlsToken is
         uint256 amount
     )
         internal
+        virtual
         override(
             ERC20Upgradeable,
             ERC20CappedUpgradeable,
@@ -55,7 +56,7 @@ contract UlsToken is
     function _burn(
         address account,
         uint256 amount
-    ) internal override(ERC20Upgradeable, ERC20VotesUpgradeable) {
+    ) internal virtual override(ERC20Upgradeable, ERC20VotesUpgradeable) {
         super._burn(account, amount);
     }
 }
