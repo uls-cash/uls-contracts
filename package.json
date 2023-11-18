@@ -5,8 +5,8 @@
   "private": true,
   "author": {
     "name": "UNITS LIMITED SUPPLY",
-    "email": "hi@uls.cash",
-    "url": "https://uls.cash"
+    "email": "hi@uls-token.org",
+    "url": "https://uls-token.org"
   },
   "scripts": {
     "clean": "rimraf ./build/ && mkdirp ./build/ && rimraf ./flatten/ && mkdirp ./flatten/",
@@ -17,16 +17,17 @@
     "deploy": "truffle migrate --network",
     "verify": "truffle run verify --network",
     "test": "truffle test",
-    "flatten": "waffle flatten"
+    "flatten": "waffle flatten",
+    "calculation": "node ./scripts/calculation.js > ./data/staking-log.log && echo 'Done!'"
   },
-  "homepage": "https://github.com/uls-cash/uls-contracts#readme",
+  "homepage": "https://github.com/uls-token/uls-contracts#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uls-cash/uls-contracts.git"
+    "url": "https://github.com/uls-token/uls-contracts.git"
   },
   "bugs": {
-    "url": "https://github.com/uls-cash/uls-contracts/issues",
-    "email": "hi@uls.cash"
+    "url": "https://github.com/uls-token/uls-contracts/issues",
+    "email": "hi@uls-token.org"
   },
   "files": [
     "contracts",
